@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Models\AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('Auth/admin-login');
-});
+
+
+Route::get('/', [AdminController::class, 'create']);
+Route::post('/login-request', [AdminController::class, 'loginrequest'])->name('login-request');
+
+
+Route::get('/dashboard', [AdminDashboardController::class, 'create'])->name('dashboard');
